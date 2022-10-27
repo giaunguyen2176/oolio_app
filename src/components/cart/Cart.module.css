@@ -1,0 +1,16 @@
+.name {
+    width: 40%;
+}
+
+.price {
+    width: 25%;
+}
+
+.quantity {
+    width: 10%;
+}
+
+.total {
+    width: 25%;
+    text-align: right;
+}
