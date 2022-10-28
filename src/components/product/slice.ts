@@ -6,8 +6,8 @@ import {add} from '../../services/CartItemService';
 const initialState = {
 };
 
-export const addToCart = createAsyncThunk(
-  'product/addToCart',
+export const addToCartAsync = createAsyncThunk(
+  'product/addToCartAsync',
   async (cartItem: ICartItem) => {
     return await add(cartItem.product, cartItem.quantity);
   }

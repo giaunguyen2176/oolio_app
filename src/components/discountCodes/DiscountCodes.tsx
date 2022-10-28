@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {
   apply,
@@ -6,10 +6,20 @@ import {
   selectItems
 } from './slice';
 
-export function DiscountCodes() {
+interface DiscountCodesProps {
+  onCodesChanged?: (codes: string[]) => void
+}
+
+export function DiscountCodes(props: DiscountCodesProps) {
   const items = useAppSelector(selectItems);
   const [code, setCode] = useState('');
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (props.onCodesChanged) {
+      props.onCodesChanged(items);
+    }
+  }, [props, items])
 
   return (
     <div>

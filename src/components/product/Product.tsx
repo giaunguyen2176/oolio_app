@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {IProduct} from '../../models/Product';
 import {
-  addToCart
+  addToCartAsync
 } from './slice';
 import {useAppDispatch} from '../../app/hooks';
 
@@ -42,7 +42,7 @@ export function Product(props: ProductProps) {
           <div className="col">
             <button type="button"
                     className="w-100 btn btn-lg btn-outline-primary"
-                    onClick={() => { dispatch(addToCart({product: props.data, quantity: quantityValue})); }}
+                    onClick={() => { dispatch(addToCartAsync({product: props.data, quantity: quantityValue})); }}
             >Add to cart</button>
           </div>
         </div>
