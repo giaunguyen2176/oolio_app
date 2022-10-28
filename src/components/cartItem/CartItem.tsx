@@ -17,13 +17,8 @@ export function CartItem(props: CartItemProps) {
       <td>
         ${props.data.product.price}
       </td>
-      <td>
-        <input className="form-control form-control-sm"
-               type="number" placeholder="Quantity"
-               aria-label=".form-control-lg example"
-               value={props.data.quantity}
-               // onChange={onIncrease}
-      />
+      <td className="text-center">
+        x{props.data.quantity}
       </td>
       <td className={styles.total}>
         ${Math.round(props.data.product.price * props.data.quantity * 100) / 100}

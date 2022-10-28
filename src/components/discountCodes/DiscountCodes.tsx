@@ -3,11 +3,13 @@ import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {
   apply,
   remove,
+  applyCodes,
   selectItems
 } from './slice';
 
 interface DiscountCodesProps {
-  onCodesChanged?: (codes: string[]) => void
+  onCodesChanged?: (codes: string[]) => void,
+  appliedCodes: string[],
 }
 
 export function DiscountCodes(props: DiscountCodesProps) {
@@ -16,10 +18,16 @@ export function DiscountCodes(props: DiscountCodesProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (props.appliedCodes.length) {
+      dispatch(applyCodes(props.appliedCodes));
+    }
+  }, [dispatch, props])
+
+  useEffect(() => {
     if (props.onCodesChanged) {
       props.onCodesChanged(items);
     }
-  }, [props, items])
+  }, [props, items]);
 
   return (
     <div>

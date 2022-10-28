@@ -3,6 +3,8 @@ import {RootState} from '../../app/store';
 import {IProduct} from '../../models/Product';
 import {ICartItem} from '../../models/CartItem';
 import {checkout} from '../../services/CheckoutService';
+import {index} from '../../services/CartItemService';
+import {clear} from '../../services/CartService';
 
 interface CheckoutParams {
   items: ICartItem[],
@@ -23,10 +25,24 @@ const initialState: CartState = {
   message: undefined
 };
 
+export const indexAsync = createAsyncThunk(
+  'cart/indexAsync',
+  async () => {
+    return await index();
+  }
+);
+
 export const checkoutAsync = createAsyncThunk(
   'cart/checkoutAsync',
   async (payload: CheckoutParams) => {
     return await checkout(payload.items, payload.codes);
+  }
+);
+
+export const clearCartAsync = createAsyncThunk(
+  'cart/clearCartAsync',
+  async () => {
+    return await clear();
   }
 );
 
@@ -62,11 +78,18 @@ export const slice = createSlice({
           });
         } else {
           const cartItem = state.data[itemIdx];
-          cartItem.quantity += action.payload.quantity;
+          cartItem.quantity = action.payload.quantity;
         }
+      })
+      .addCase(indexAsync.fulfilled, (state, action: any) => {
+        state.data = action.payload;
       })
       .addCase(checkoutAsync.fulfilled, (state, action: any) => {
         state.total = action.payload;
+      })
+      .addCase(clearCartAsync.fulfilled, (state, action: any) => {
+        state.total = 0;
+        state.data = [];
       });
   },
 });

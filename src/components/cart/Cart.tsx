@@ -2,8 +2,11 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {debounce} from 'lodash';
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {
+  indexAsync,
   checkoutAsync,
-  selectItems, selectTotal
+  clearCartAsync,
+  selectItems,
+  selectTotal
 } from './slice';
 import styles from './Cart.module.css';
 import {CartItem} from '../cartItem/CartItem';
@@ -30,9 +33,10 @@ export function Cart() {
   );
 
   useEffect(() => {
-    if (items.length <= 0) {
-      return;
-    }
+   dispatch(indexAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
     debounceDispatch(checkoutAsync({items, codes: appliedCodes}));
   }, [debounceDispatch, items, appliedCodes])
 
@@ -46,8 +50,8 @@ export function Cart() {
           <tr>
             <th className={styles.name}>Name</th>
             <th className={styles.price}>Price</th>
-            <th className={styles.quantity}>Quantity</th>
-            <th className={styles.total}>Total</th>
+            <th className={`text-center ${styles.total}`}>Quantity</th>
+            <th className={`text-end ${styles.total}`}>Total</th>
           </tr>
           </thead>
           <tbody>
@@ -57,10 +61,15 @@ export function Cart() {
           </tbody>
         </table>
       </div>;
-    discountCodes = <DiscountCodes onCodesChanged={onCodesChanged}/>
+    discountCodes = <DiscountCodes appliedCodes={appliedCodes} onCodesChanged={onCodesChanged}/>
     total =
       <div className="row row-cols-1 row-cols-md-2 mt-5 mb-3 text-">
-        <div className="col"/>
+        <div className="col">
+          <button type="button"
+                  className="w-100 btn btn-lg btn-outline-primary"
+                  onClick={() => { dispatch(clearCartAsync()); setAppliedCodes([]); }}
+          >Clear the cart</button>
+        </div>
         <div className="col">
           <div className="row mb-3 text-center">
             <div className="col">
