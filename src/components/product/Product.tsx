@@ -41,7 +41,7 @@ export function Product(props: ProductProps) {
           </div>
           <div className="col">
             <button type="button"
-                    className="w-100 btn btn-lg btn-outline-primary"
+                    className="w-100 btn btn-lg btn-outline-primary btn-add-to-cart"
                     onClick={() => { dispatch(addToCartAsync({product: props.data, quantity: quantityValue})); }}
             >Add to cart</button>
           </div>

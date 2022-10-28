@@ -36,7 +36,7 @@ export function DiscountCodes(props: DiscountCodesProps) {
         <div className="col">
           <div className="row mb-3 text-center">
             <div className="col-8">
-              <input className="form-control"
+              <input className="form-control code"
                      type="text" placeholder="CODE: MICROSOFT/AMAZON/FACEBOOK"
                      value={code}
                      onChange={(e: any) => setCode(e.target.value)}
@@ -44,7 +44,7 @@ export function DiscountCodes(props: DiscountCodesProps) {
             </div>
             <div className="col">
               <button type="button"
-                      className="w-100 btn btn-primary"
+                      className="w-100 btn btn-primary btn-apply"
                       onClick={() => { if (!code) return; dispatch(apply(code)); setCode(''); }}
               >Apply</button>
             </div>
@@ -61,7 +61,7 @@ export function DiscountCodes(props: DiscountCodesProps) {
                 <li key={item} className="list-group-item align-content-around">
                   <div className="row text-center">
                     <div className="col-8 text-start">
-                      <span>{item}</span>
+                      <span className="discount-code">{item}</span>
                     </div>
                     <div className="col text-end">
                       <button type="button"

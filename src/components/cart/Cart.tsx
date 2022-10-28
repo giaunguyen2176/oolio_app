@@ -73,7 +73,7 @@ export function Cart() {
         <div className="col">
           <div className="row mb-3 text-center">
             <div className="col">
-              <p className="display-6 text-end">Total: ${totalValue}</p>
+              <p className="display-6 text-end cart-total">Total: ${totalValue}</p>
             </div>
           </div>
         </div>

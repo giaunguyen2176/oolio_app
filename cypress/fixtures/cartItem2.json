@@ -1,0 +1,11 @@
+{
+  "data": {
+    "product": {
+      "id": 2,
+      "name": "Medium pizza",
+      "description": "Medium size pizza with cheese",
+      "price": 15.99
+    },
+    "quantity": 2
+  }
+}

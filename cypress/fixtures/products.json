@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Small pizza",
+      "description": "Small size pizza with cheese",
+      "price": 11.99
+    },
+    {
+      "id": 2,
+      "name": "Medium pizza",
+      "description": "Medium size pizza with cheese",
+      "price": 15.99
+    },
+    {
+      "id": 3,
+      "name": "Large pizza",
+      "description": "Large size pizza with cheese",
+      "price": 21.99
+    }
+  ]
+}

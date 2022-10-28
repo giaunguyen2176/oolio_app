@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "product": {
+        "id": 3,
+        "name": "Large pizza",
+        "description": "Large size pizza with cheese",
+        "price": 21.99
+      },
+      "quantity": 1
+    }
+  ]
+}

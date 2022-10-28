@@ -12,15 +12,15 @@ interface CartItemProps {
 
 export function CartItem(props: CartItemProps) {
   return (
-    <tr>
-      <th scope="row" className="text-start">{props.data.product.name}</th>
-      <td>
+    <tr className="cart-item">
+      <th scope="row" className="text-start name">{props.data.product.name}</th>
+      <td className="price">
         ${props.data.product.price}
       </td>
-      <td className="text-center">
+      <td className="text-center quantity">
         x{props.data.quantity}
       </td>
-      <td className={styles.total}>
+      <td className={`total ${styles.total}`}>
         ${Math.round(props.data.product.price * props.data.quantity * 100) / 100}
       </td>
     </tr>
